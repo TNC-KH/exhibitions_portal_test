@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TNC Insight-Tour Portal — 最前線から、これからの未来を読み、創る。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e0e0e;
+    --ink-2:#1f1f1f;
+    --ink-soft:#4a4a4a;
+    --ink-mute:#7a7a7a;
+    --paper:#fafaf8;
+    --paper-2:#f1efe9;
+    --paper-3:#e8e6df;
+    --line:rgba(14,14,14,.10);
+    --line-strong:rgba(14,14,14,.28);
+    --shadow-soft: 0 1px 0 rgba(14,14,14,.04), 0 18px 40px -22px rgba(14,14,14,.18);
+    --display:"Fraunces","Noto Serif JP",serif;
+    --serif:"Noto Serif JP",serif;
+    --sans:"Noto Sans JP",system-ui,sans-serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0.35 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    mix-blend-mode:multiply;
+  }
+
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  /* ============ HEADER ============ */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,250,248,.93);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1480px;margin:0 auto;padding:18px 40px;
+    display:flex;align-items:center;justify-content:space-between;gap:32px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;cursor:pointer}
+  .brand-mark{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--ink);color:var(--paper);
+    display:grid;place-items:center;
+    font-family:var(--display);font-style:italic;font-weight:500;font-size:20px;
+    letter-spacing:-.02em;
+  }
+  .brand-text{line-height:1.15}
+  .brand-text .top{font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:-.01em}
+  .brand-text .bottom{font-size:10px;letter-spacing:.22em;color:var(--ink-mute);text-transform:uppercase;margin-top:2px}
+
+  .nav-links{display:flex;gap:34px;font-size:13px;letter-spacing:.04em}
+  .nav-links a{position:relative;padding:6px 0;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.active{color:var(--ink)}
+  .nav-links a.active::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--ink);
+  }
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-cta .login{font-size:13px;color:var(--ink-soft)}
+  .btn-primary{
+    background:var(--ink);color:var(--paper);
+    padding:11px 22px;border-radius:999px;
+    font-size:13px;letter-spacing:.04em;
+    transition:background .2s;
+    border:1px solid var(--ink);
+  }
+  .btn-primary:hover{background:#2a2a2a}
+
+  /* ============ HERO ============ */
+  .hero{
+    max-width:1480px;margin:0 auto;padding:88px 40px 60px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:end;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:28px;
+  }
+  .eyebrow::before{content:"";width:32px;height:1px;background:var(--ink-soft)}
+
+  h1.hero-title{
+    font-family:var(--display);
+    font-weight:300;
+    font-size:clamp(48px, 6.3vw, 96px);
+    line-height:.98;
+    letter-spacing:-.028em;
+    color:var(--ink);
+  }
+  h1.hero-title em{
+    font-style:italic;font-weight:400;
+    font-variation-settings: "opsz" 144;
+  }
+  h1.hero-title .br{display:block}
+
+  .hero-sub{
+    font-family:var(--serif);
+    font-size:17px;line-height:1.85;
+    color:var(--ink-soft);
+    max-width:540px;margin-top:32px;
+  }
+
+  .hero-meta{
+    padding-left:40px;border-left:1px solid var(--line-strong);
+    align-self:end;padding-bottom:8px;
+  }
+  .hero-meta-item{margin-bottom:32px}
+  .hero-meta-item:last-child{margin-bottom:0}
+  .hero-meta-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-mute);margin-bottom:6px;
+  }
+  .hero-meta-val{font-family:var(--display);font-size:36px;font-weight:400;letter-spacing:-.015em;line-height:1}
+  .hero-meta-val small{font-size:14px;color:var(--ink-soft);margin-left:8px;font-family:var(--sans)}
+
+  /* Compass ornament */
+  .dial-ornament{
+    position:absolute;top:88px;right:40px;width:160px;height:160px;
+    opacity:.45;pointer-events:none;color:var(--ink);
+  }
+  @keyframes slowRotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .dial-ornament .needle{transform-origin:100px 100px;animation:slowRotate 60s linear infinite}
+
+  /* ============ FILTERS ============ */
+  .filter-bar{
+    max-width:1480px;margin:32px auto 0;padding:0 40px;
+  }
+  .filter-row{
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    padding:18px 24px;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:2px;
+  }
+  .filter-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-mute);margin-right:14px;
+  }
+  .chip{
+    padding:7px 16px;border-radius:999px;
+    font-size:12.5px;letter-spacing:.02em;
+    border:1px solid var(--line-strong);
+    background:transparent;color:var(--ink-soft);
+    transition:all .18s;
+  }
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .chip.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  .filter-divider{width:1px;height:22px;background:var(--line-strong);margin:0 8px}
+
+  /* ============ CALENDAR / GRID ============ */
+  .calendar-section{
+    max-width:1480px;margin:48px auto 0;padding:0 40px 100px;
+  }
+  .section-head{
+    display:flex;justify-content:space-between;align-items:end;
+    padding-bottom:24px;border-bottom:1px solid var(--line-strong);
+    margin-bottom:32px;
+  }
+  .section-head h2{
+    font-family:var(--display);font-weight:400;
+    font-size:38px;letter-spacing:-.02em;
+  }
+  .section-head h2 em{font-style:italic}
+  .section-head .meta{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute)}
+
+  .card-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .card{
+    background:var(--paper);
+    padding:28px 28px 24px;
+    display:flex;flex-direction:column;gap:18px;
+    position:relative;
+    transition:background .25s;
+    cursor:pointer;
+  }
+  .card:hover{background:var(--paper-2)}
+  .card.featured{
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);color:var(--paper);
+  }
+  .card.featured:hover{background:linear-gradient(180deg, #050505 0%, #1a1a1a 100%)}
+  .card.featured .card-region,
+  .card.featured .card-date-month,
+  .card.featured .card-status,
+  .card.featured .card-theme-list span{color:rgba(250,250,248,.65)}
+  .card.featured .card-status .num{color:var(--paper)}
+  .card.featured .card-theme-list span{border-color:rgba(250,250,248,.25)}
+
+  .card-top{display:flex;justify-content:space-between;align-items:start;gap:12px}
+  .card-date{
+    font-family:var(--display);font-weight:400;
+    font-size:44px;line-height:1;letter-spacing:-.025em;
+  }
+  .card-date-month{font-size:13px;font-family:var(--mono);letter-spacing:.1em;color:var(--ink-mute);display:block;margin-top:8px;text-transform:uppercase}
+
+  .card-region{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-mute);text-align:right;
+  }
+  .card-region .country{display:block;font-family:var(--display);font-size:16px;letter-spacing:-.01em;text-transform:none;color:var(--ink);margin-top:4px;font-style:italic}
+  .card.featured .card-region .country{color:var(--paper)}
+
+  .card-title{
+    font-family:var(--display);font-weight:500;
+    font-size:24px;letter-spacing:-.015em;line-height:1.2;
+    padding-top:16px;border-top:1px solid var(--line);
+  }
+  .card.featured .card-title{border-top-color:rgba(250,250,248,.15)}
+
+  .card-theme-list{display:flex;flex-wrap:wrap;gap:6px}
+  .card-theme-list span{
+    font-size:10.5px;letter-spacing:.04em;
+    padding:3px 9px;border-radius:999px;
+    border:1px solid var(--line-strong);color:var(--ink-soft);
+  }
+
+  .card-foot{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:14px;border-top:1px dashed var(--line-strong);
+    margin-top:auto;
+  }
+  .card.featured .card-foot{border-top-color:rgba(250,250,248,.2)}
+  .card-status{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-soft);
+  }
+  .card-status .num{
+    font-family:var(--display);font-style:italic;font-size:20px;color:var(--ink);
+    font-weight:500;margin-right:4px;
+  }
+  .card-arrow{
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--line-strong);
+    display:grid;place-items:center;
+    transition:all .2s;
+  }
+  .card:hover .card-arrow{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:translate(2px,-2px)}
+  .card.featured .card-arrow{border-color:rgba(250,250,248,.35)}
+  .card.featured:hover .card-arrow{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+
+  .card-tag{
+    position:absolute;top:0;right:0;
+    background:var(--paper);color:var(--ink);
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+    padding:5px 11px;
+  }
+
+  /* ============ DETAIL VIEW ============ */
+  .view-detail{display:none}
+  .view.active{display:block}
+
+  /* Detail Hero - banner style */
+  .detail-banner{
+    background:var(--ink);color:var(--paper);
+    position:relative;overflow:hidden;
+  }
+  .detail-banner::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(135deg, transparent 49.5%, rgba(250,250,248,.04) 49.5%, rgba(250,250,248,.04) 50.5%, transparent 50.5%),
+      linear-gradient(45deg, transparent 49.5%, rgba(250,250,248,.04) 49.5%, rgba(250,250,248,.04) 50.5%, transparent 50.5%);
+    background-size:60px 60px;
+    pointer-events:none;
+  }
+  .detail-banner-inner{
+    max-width:1480px;margin:0 auto;padding:48px 40px 64px;
+    position:relative;
+  }
+  .breadcrumb{
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(250,250,248,.55);margin-bottom:48px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  }
+  .breadcrumb .back-btn:hover{color:var(--paper)}
+  .breadcrumb .sep{opacity:.4}
+  .back-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+
+  .detail-banner h1{
+    font-family:var(--display);font-weight:300;
+    font-size:clamp(56px,6.6vw,108px);line-height:.95;letter-spacing:-.03em;
+    margin-bottom:32px;
+  }
+  .detail-banner h1 em{font-style:italic;font-weight:400}
+  .detail-banner .lead{
+    font-family:var(--serif);font-size:18px;line-height:1.85;
+    color:rgba(250,250,248,.78);max-width:680px;margin-bottom:48px;
+  }
+
+  .banner-meta-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
+    padding-top:32px;border-top:1px solid rgba(250,250,248,.18);
+  }
+  .banner-meta-grid .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.5);margin-bottom:8px}
+  .banner-meta-grid .val{font-family:var(--display);font-size:22px;letter-spacing:-.01em;line-height:1.25}
+  .banner-meta-grid .val em{font-style:italic;color:rgba(250,250,248,.85)}
+
+  /* Detail body sections */
+  .section-block{max-width:1480px;margin:0 auto;padding:88px 40px 0}
+  .section-block .sb-head{
+    display:flex;justify-content:space-between;align-items:end;
+    margin-bottom:36px;padding-bottom:18px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .sb-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-mute);margin-bottom:14px;display:flex;align-items:center;gap:12px;
+  }
+  .sb-label .num{
+    width:24px;height:24px;border:1px solid var(--line-strong);border-radius:50%;
+    display:inline-grid;place-items:center;font-size:10px;
+  }
+  .sb-head h2{
+    font-family:var(--display);font-weight:400;
+    font-size:42px;letter-spacing:-.022em;line-height:1.1;max-width:760px;
+  }
+  .sb-head h2 em{font-style:italic}
+  .sb-head .sb-aside{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);text-align:right;align-self:end;padding-bottom:6px}
+
+  /* Overview (TNC予察 + 概要) */
+  .overview-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:start}
+  .overview-text p{font-family:var(--serif);font-size:16px;line-height:1.95;color:var(--ink-soft);margin-bottom:18px}
+  .overview-text p:last-child{margin-bottom:0}
+  .pull{
+    font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:24px;line-height:1.45;color:var(--ink);
+    border-left:2px solid var(--ink);padding:4px 0 4px 22px;margin:24px 0;
+  }
+  .fact-card{
+    background:var(--paper-2);border:1px solid var(--line);padding:32px;
+  }
+  .fact-card h4{font-family:var(--display);font-size:20px;letter-spacing:-.01em;font-weight:500;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line-strong)}
+  .fact-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  .fact-row:last-child{border-bottom:none}
+  .fact-row .k{color:var(--ink-mute);font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+  .fact-row .v{font-family:var(--display);font-size:16px;font-weight:500}
+  .fact-row .v em{font-style:italic}
+
+  /* Past Archive */
+  .archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .arch-card{
+    background:var(--paper);border:1px solid var(--line);
+    padding:24px;display:flex;flex-direction:column;gap:12px;
+    position:relative;overflow:hidden;cursor:pointer;
+    transition:transform .25s, box-shadow .25s, border-color .25s;
+    min-height:200px;
+  }
+  .arch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-soft);border-color:var(--ink)}
+  .arch-card .atype{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);display:flex;justify-content:space-between}
+  .arch-card .atype .year{color:var(--ink)}
+  .arch-card h4{font-family:var(--display);font-weight:500;font-size:18px;letter-spacing:-.01em;line-height:1.3}
+  .arch-card .adesc{font-size:12.5px;color:var(--ink-soft);line-height:1.6;flex:1}
+  .arch-card .afoot{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-mute)}
+  .arch-card .access{display:inline-flex;align-items:center;gap:5px}
+  .arch-card .access.free{color:var(--ink)}
+  .arch-card .access.members{color:var(--ink-soft)}
+  .arch-card .access.paid{color:var(--ink-soft)}
+  .arch-card.locked::after{
+    content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,transparent 55%,rgba(250,250,248,.92) 100%);
+    pointer-events:none;
+  }
+  .lock-tag{
+    position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:2;
+    background:var(--ink);color:var(--paper);
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+    padding:5px 11px;border-radius:999px;
+  }
+
+  /* Webinar callout (after archive) */
+  .webinar-callout{
+    margin-top:36px;
+    background:var(--paper-2);border:1px solid var(--line);
+    padding:32px 36px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;
+  }
+  .webinar-callout .wb-icon{
+    width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--paper);
+    display:grid;place-items:center;font-family:var(--display);font-style:italic;font-size:24px;
+  }
+  .webinar-callout .wb-info .wb-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px}
+  .webinar-callout h4{font-family:var(--display);font-weight:500;font-size:22px;letter-spacing:-.01em;line-height:1.3}
+  .webinar-callout .wb-sub{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+  .wb-actions{display:flex;flex-direction:column;gap:8px;align-items:end}
+  .wb-passcode{
+    font-family:var(--mono);font-size:11px;
+    background:var(--paper);padding:6px 12px;border-radius:4px;display:inline-flex;gap:8px;align-items:center;
+    border:1px solid var(--line);
+  }
+  .wb-passcode .pc-label{color:var(--ink-mute);font-size:9.5px;letter-spacing:.1em}
+  .wb-passcode .copy{font-size:10px;color:var(--ink-soft);cursor:pointer}
+  .wb-passcode .copy:hover{color:var(--ink)}
+  .wb-link{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--paper);
+    padding:11px 20px;border-radius:999px;font-size:13px;
+    transition:background .2s;
+  }
+  .wb-link:hover{background:#2a2a2a}
+
+  /* ============ TOUR SECTION (反転で明確に区切る) ============ */
+  .tour-section{
+    margin-top:120px;
+    background:var(--ink);color:var(--paper);
+    padding:88px 0 96px;
+    position:relative;overflow:hidden;
+  }
+  .tour-section::before{
+    content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;
+    border-radius:50%;background:radial-gradient(circle,rgba(250,250,248,.04),transparent 60%);
+    pointer-events:none;
+  }
+  .tour-inner{max-width:1480px;margin:0 auto;padding:0 40px;position:relative}
+
+  .tour-eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(250,250,248,.55);margin-bottom:24px;display:flex;align-items:center;gap:14px;
+  }
+  .tour-eyebrow::before{content:"";width:32px;height:1px;background:rgba(250,250,248,.55)}
+
+  .tour-section h2{
+    font-family:var(--display);font-weight:300;
+    font-size:clamp(40px,5vw,72px);line-height:1.02;letter-spacing:-.025em;
+    margin-bottom:28px;max-width:900px;
+  }
+  .tour-section h2 em{font-style:italic;font-weight:400}
+  .tour-section .lead{
+    font-family:var(--serif);font-size:17px;line-height:1.85;
+    color:rgba(250,250,248,.78);max-width:660px;margin-bottom:64px;
+  }
+
+  /* Tour benefits row */
+  .tour-benefits{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:rgba(250,250,248,.15);
+    border:1px solid rgba(250,250,248,.15);
+    margin-bottom:72px;
+  }
+  .tbene{
+    background:var(--ink);padding:32px 28px;display:flex;flex-direction:column;gap:14px;
+  }
+  .tbene .tbn{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:rgba(250,250,248,.45)}
+  .tbene h5{font-family:var(--display);font-size:18px;letter-spacing:-.005em;line-height:1.35;font-weight:500}
+  .tbene p{font-size:12.5px;color:rgba(250,250,248,.65);line-height:1.65}
+
+  /* Tour menu (options to choose) */
+  .menu-head{
+    display:flex;justify-content:space-between;align-items:end;
+    padding-bottom:18px;border-bottom:1px solid rgba(250,250,248,.18);margin-bottom:32px;
+  }
+  .menu-head h3{font-family:var(--display);font-size:28px;letter-spacing:-.018em;font-weight:400}
+  .menu-head h3 em{font-style:italic}
+  .menu-head .mh-meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,248,.5)}
+
+  .tour-menu{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(250,250,248,.15);border:1px solid rgba(250,250,248,.15)}
+  .tour-item{
+    background:var(--ink);padding:28px 32px;display:flex;gap:20px;align-items:start;
+    transition:background .25s;cursor:pointer;
+  }
+  .tour-item:hover{background:#1f1f1f}
+  .tour-item .icon{
+    width:48px;height:48px;border-radius:50%;background:transparent;
+    border:1px solid rgba(250,250,248,.4);
+    display:grid;place-items:center;flex-shrink:0;
+    font-family:var(--display);font-style:italic;font-size:20px;color:var(--paper);
+  }
+  .tour-item h5{font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-.005em;margin-bottom:6px}
+  .tour-item p{font-size:13px;color:rgba(250,250,248,.7);line-height:1.7;font-family:var(--sans)}
+
+  /* CTA block: 検討中 + Pricing */
+  .tour-cta-row{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:32px;margin-top:72px;
+  }
+  .cta-main{
+    background:var(--paper);color:var(--ink);
+    padding:40px;border-radius:4px;position:relative;
+  }
+  .cta-label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px}
+  .cta-main h4{font-family:var(--display);font-weight:400;font-size:34px;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+  .cta-main h4 em{font-style:italic}
+  .cta-main .cta-sub{font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:28px}
+  .interest-btn{
+    width:100%;background:var(--ink);color:var(--paper);
+    padding:18px 22px;border-radius:4px;
+    font-family:var(--display);font-size:18px;letter-spacing:-.005em;font-weight:500;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    transition:background .2s;border:1px solid var(--ink);
+  }
+  .interest-btn:hover{background:#2a2a2a}
+  .interest-btn.active{background:var(--paper);color:var(--ink);border-color:var(--ink)}
+  .interest-btn .badge{
+    background:rgba(250,250,248,.18);padding:3px 10px;border-radius:999px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+  }
+  .interest-btn.active .badge{background:var(--ink);color:var(--paper)}
+
+  .social-proof{
+    margin-top:20px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-soft);line-height:1.7;
+  }
+  .social-proof .num{font-family:var(--display);font-style:italic;color:var(--ink);font-size:20px;vertical-align:-1px;margin:0 3px;font-weight:500}
+
+  /* Pricing sim */
+  .price-sim{
+    background:transparent;color:var(--paper);
+    border:1px solid rgba(250,250,248,.2);padding:32px;border-radius:4px;
+  }
+  .price-sim .ps-label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.5);margin-bottom:12px}
+  .price-sim h5{font-family:var(--display);font-weight:500;font-size:22px;letter-spacing:-.01em;margin-bottom:18px;line-height:1.25}
+  .ps-row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px dashed rgba(250,250,248,.18);font-size:13px;color:rgba(250,250,248,.75)}
+  .ps-row:last-of-type{border-bottom:none}
+  .ps-row .v{font-family:var(--display);font-style:italic;font-size:18px;font-weight:500;color:var(--paper)}
+  .ps-row.current{color:var(--paper)}
+  .ps-row.current .v{font-size:22px}
+  .ps-foot{margin-top:14px;font-size:11px;color:rgba(250,250,248,.5);line-height:1.6}
+
+  /* Schedule */
+  .schedule-section{margin-top:72px}
+  .schedule-table{
+    background:transparent;border:1px solid rgba(250,250,248,.2);
+  }
+  .schedule-row{
+    display:grid;grid-template-columns:80px 1.2fr 1.8fr 180px;gap:24px;
+    padding:20px 28px;border-bottom:1px solid rgba(250,250,248,.15);align-items:center;
+  }
+  .schedule-row:last-child{border-bottom:none}
+  .schedule-row.head{
+    background:rgba(250,250,248,.06);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.6);
+  }
+  .schedule-row .day{font-family:var(--display);font-style:italic;font-size:28px;color:var(--paper);font-weight:500}
+  .schedule-row .title-cell{font-family:var(--display);font-weight:500;font-size:17px;color:var(--paper)}
+  .schedule-row .desc-cell{font-size:13px;color:rgba(250,250,248,.7);line-height:1.65}
+  .schedule-row .tag-cell{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(250,250,248,.55);
+  }
+
+  /* Final CTA */
+  .final-cta-row{
+    display:flex;gap:14px;margin-top:64px;flex-wrap:wrap;align-items:center;
+    padding-top:36px;border-top:1px solid rgba(250,250,248,.18);
+  }
+  .final-cta-row .label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.55);margin-right:8px}
+  .btn-light{
+    background:var(--paper);color:var(--ink);padding:14px 28px;border-radius:999px;font-size:14px;
+    transition:transform .2s;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-light:hover{transform:translateX(2px)}
+  .btn-ghost{
+    background:transparent;color:var(--paper);padding:14px 28px;border-radius:999px;font-size:14px;
+    border:1px solid rgba(250,250,248,.4);
+    transition:border-color .2s;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-ghost:hover{border-color:var(--paper)}
+
+  /* Footer */
+  footer.site{
+    background:var(--paper-2);color:var(--ink);
+    padding:72px 40px 30px;border-top:1px solid var(--line);
+  }
+  .foot-inner{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px}
+  .foot-brand{font-family:var(--display);font-size:30px;line-height:1.15;font-weight:300;letter-spacing:-.02em}
+  .foot-brand em{font-style:italic}
+  .foot-tagline{font-size:13px;color:var(--ink-soft);margin-top:16px;line-height:1.75}
+  .foot-col h6{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:18px}
+  .foot-col ul{list-style:none}
+  .foot-col li{margin-bottom:9px;font-size:13px;color:var(--ink-soft)}
+  .foot-col li a:hover{color:var(--ink)}
+  .foot-bottom{
+    max-width:1480px;margin:48px auto 0;padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;font-size:11px;color:var(--ink-mute);font-family:var(--mono);letter-spacing:.06em;
+  }
+
+  /* Toast */
+  .toast{
+    position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(40px);
+    background:var(--ink);color:var(--paper);padding:14px 24px;border-radius:999px;
+    font-size:13px;display:flex;align-items:center;gap:12px;
+    box-shadow:0 12px 40px rgba(0,0,0,.25);
+    opacity:0;transition:all .35s;pointer-events:none;z-index:100;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast .dot{width:8px;height:8px;border-radius:50%;background:var(--paper)}
+
+  /* animations */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .card,.section-block,.hero-grid > *{animation:fadeUp .6s ease both}
+  .card:nth-child(2){animation-delay:.05s}
+  .card:nth-child(3){animation-delay:.1s}
+  .card:nth-child(4){animation-delay:.15s}
+  .card:nth-child(5){animation-delay:.2s}
+  .card:nth-child(6){animation-delay:.25s}
+
+  /* responsive */
+  @media (max-width: 1100px){
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    .hero-meta{padding-left:0;border-left:none;border-top:1px solid var(--line-strong);padding-top:24px;display:flex;gap:48px;flex-wrap:wrap}
+    .hero-meta-item{margin-bottom:0}
+    .card-grid{grid-template-columns:repeat(2,1fr)}
+    .overview-grid{grid-template-columns:1fr;gap:36px}
+    .archive-grid{grid-template-columns:repeat(2,1fr)}
+    .tour-benefits{grid-template-columns:repeat(2,1fr)}
+    .tour-menu{grid-template-columns:1fr}
+    .tour-cta-row{grid-template-columns:1fr}
+    .banner-meta-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-inner{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    .webinar-callout{grid-template-columns:1fr;gap:20px;text-align:left}
+    .wb-actions{align-items:start}
+    .schedule-row{grid-template-columns:60px 1fr;gap:12px}
+    .schedule-row .desc-cell,.schedule-row .tag-cell{grid-column:1/-1;padding-left:72px}
+    .dial-ornament{display:none}
+  }
+  @media (max-width:680px){
+    .card-grid{grid-template-columns:1fr}
+    .archive-grid{grid-template-columns:1fr}
+    .tour-benefits{grid-template-columns:1fr}
+    .banner-meta-grid{grid-template-columns:1fr}
+    .foot-inner{grid-template-columns:1fr}
+    .nav{padding:14px 20px}
+    .hero,.calendar-section,.filter-bar,.detail-banner-inner,.section-block,.tour-inner{padding-left:20px;padding-right:20px}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand" onclick="showView('list')">
+      <div class="brand-mark">t</div>
+      <div class="brand-text">
+        <div class="top">Insight-Tour <em style="font-style:italic">Portal</em></div>
+        <div class="bottom">by TNC · Lifestyle Researcher®</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#" class="active" onclick="event.preventDefault();showView('list')">Calendar 2026</a>
+      <a href="#">Past Reports</a>
+      <a href="#">Methodology</a>
+      <a href="#">About TNC</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="login">Sign in</a>
+      <button class="btn-primary">Talk to TNC →</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============= LIST VIEW ============= -->
+<main id="view-list" class="view active">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">2026 Global Insight Calendar</div>
+        <h1 class="hero-title">
+          最前線から、<span class="br"></span>
+          これからの<span class="br"></span>
+          未来を、<em>読み</em>、<em>創る</em>。
+        </h1>
+        <p class="hero-sub">
+          展示会の情報を集めるだけのツアーは、もう終わりにしませんか。<br>
+          現地の生活者・小売・有識者ネットワークを掛け合わせ、<br>
+          世界の最前線から「次の事業のヒント」を持ち帰る、TNCの視察プラットフォーム。
+        </p>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Tracking</div>
+          <div class="hero-meta-val">42<small>件の展示会 / 2026</small></div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Active Interest</div>
+          <div class="hero-meta-val">186<small>社が検討中</small></div>
+        </div>
+      </div>
+    </div>
+
+    <svg class="dial-ornament" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width=".5" opacity=".4"/>
+      <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width=".5" opacity=".25"/>
+      <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width=".5" opacity=".15"/>
+      <g stroke="currentColor" stroke-width=".5" opacity=".4">
+        <line x1="100" y1="8" x2="100" y2="22"/>
+        <line x1="100" y1="178" x2="100" y2="192"/>
+        <line x1="8" y1="100" x2="22" y2="100"/>
+        <line x1="178" y1="100" x2="192" y2="100"/>
+      </g>
+      <g font-family="JetBrains Mono" font-size="9" fill="currentColor" opacity=".5" text-anchor="middle">
+        <text x="100" y="4">N</text><text x="100" y="201">S</text>
+        <text x="4" y="103">W</text><text x="197" y="103">E</text>
+      </g>
+      <polygon class="needle" points="100,30 96,100 100,170 104,100" fill="currentColor" opacity=".7"/>
+      <circle cx="100" cy="100" r="4" fill="currentColor"/>
+    </svg>
+  </section>
+
+  <section class="filter-bar">
+    <div class="filter-row">
+      <span class="filter-label">Region</span>
+      <button class="chip active">All</button>
+      <button class="chip">APAC</button>
+      <button class="chip">Europe</button>
+      <button class="chip">Americas</button>
+      <button class="chip">Middle East</button>
+
+      <div class="filter-divider"></div>
+
+      <span class="filter-label">Category</span>
+      <button class="chip active">All</button>
+      <button class="chip">Food</button>
+      <button class="chip">Beauty</button>
+      <button class="chip">Tech</button>
+      <button class="chip">Retail</button>
+      <button class="chip">Mobility</button>
+
+      <div class="filter-divider"></div>
+
+      <span class="filter-label">Insight Theme</span>
+      <button class="chip active">Gen Z</button>
+      <button class="chip">Silver Society</button>
+      <button class="chip">サステナ経営</button>
+      <button class="chip">次世代リテール</button>
+      <button class="chip">Wellness</button>
+    </div>
+  </section>
+
+  <section class="calendar-section">
+    <div class="section-head">
+      <h2>Global <em>Calendar</em> / 2026</h2>
+      <div class="meta">Showing 6 of 42 events · Sort: 開催日 ↑</div>
+    </div>
+
+    <div class="card-grid">
+
+      <article class="card featured" onclick="showView('detail')">
+        <span class="card-tag">TNC Featured</span>
+        <div class="card-top">
+          <div class="card-date">24<span class="card-date-month">Jun · 2026</span></div>
+          <div class="card-region">Asia<span class="country">Taipei, TW</span></div>
+        </div>
+        <h3 class="card-title">FOOD TAIPEI 2026 — Taipei International Food Show</h3>
+        <div class="card-theme-list">
+          <span>Food Safety</span><span>Silver Society</span><span>サステナ</span><span>台湾ローカライズ</span>
+        </div>
+        <div class="card-foot">
+          <div class="card-status"><span class="num">12</span>社が検討中</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-date">17<span class="card-date-month">Mar · 2026</span></div>
+          <div class="card-region">Europe<span class="country">Cologne, DE</span></div>
+        </div>
+        <h3 class="card-title">ProSweets — 菓子・スナック原料/技術の最前線</h3>
+        <div class="card-theme-list">
+          <span>Wellness</span><span>機能性</span><span>Gen Z</span>
+        </div>
+        <div class="card-foot">
+          <div class="card-status"><span class="num">7</span>社が検討中</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-date">21<span class="card-date-month">Apr · 2026</span></div>
+          <div class="card-region">Asia<span class="country">Shanghai, CN</span></div>
+        </div>
+        <h3 class="card-title">SIAL Shanghai — アジア最大級の食品展</h3>
+        <div class="card-theme-list">
+          <span>次世代リテール</span><span>D2C</span><span>EC</span>
+        </div>
+        <div class="card-foot">
+          <div class="card-status"><span class="num">9</span>社が検討中</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-date">06<span class="card-date-month">May · 2026</span></div>
+          <div class="card-region">Americas<span class="country">Chicago, US</span></div>
+        </div>
+        <h3 class="card-title">National Restaurant Association Show</h3>
+        <div class="card-theme-list">
+          <span>外食DX</span><span>サステナ経営</span>
+        </div>
+        <div class="card-foot">
+          <div class="card-status"><span class="num">5</span>社が検討中</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-date">09<span class="card-date-month">Sep · 2026</span></div>
+          <div class="card-region">Europe<span class="country">Paris, FR</span></div>
+        </div>
+        <h3 class="card-title">SIAL Paris — 世界最大級の食品見本市</h3>
+        <div class="card-theme-list">
+          <span>サステナ</span><span>プラントベース</span><span>Wellness</span>
+        </div>
+        <div class="card-foot">
+          <div class="card-status"><span class="num">18</span>社が検討中</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div class="card-date">13<span class="card-date-month">Oct · 2026</span></div>
+          <div class="card-region">Middle East<span class="country">Dubai, AE</span></div>
+        </div>
+        <h3 class="card-title">GulFood Manufacturing — 中東フード製造の窓</h3>
+        <div class="card-theme-list">
+          <span>Halal</span><span>機能性</span><span>新興市場</span>
+        </div>
+        <div class="card-foot">
+          <div class="card-status"><span class="num">4</span>社が検討中</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<!-- ============= DETAIL VIEW ============= -->
+<main id="view-detail" class="view view-detail">
+
+  <!-- === BANNER (展示会概要) === -->
+  <section class="detail-banner">
+    <div class="detail-banner-inner">
+      <div class="breadcrumb">
+        <span class="back-btn" onclick="showView('list')">← Calendar 2026</span>
+        <span class="sep">/</span>
+        <span>Asia / Taipei</span>
+        <span class="sep">/</span>
+        <span>FOOD TAIPEI 2026</span>
+      </div>
+
+      <h1><em>FOOD</em> TAIPEI 2026</h1>
+      <p class="lead">
+        食品・飲料業界向けの国際見本市。台湾市場とアジア圏の食品ビジネス動向を一望できる、APAC最大級の窓口。<br>
+        食の安全性、シニア対応、ローカライズ、時短ソリューション——日本の5年先を読む手がかりが揃う展示会です。
+      </p>
+
+      <div class="banner-meta-grid">
+        <div><div class="label">会期</div><div class="val"><em>2026.06.24 – 27</em></div></div>
+        <div><div class="label">会場</div><div class="val">南港展示ホール<br>台北</div></div>
+        <div><div class="label">想定規模(2024実績)</div><div class="val">1,600社<br>4,500ブース</div></div>
+        <div><div class="label">公式サイト</div><div class="val"><a href="https://www.foodtaipei.com.tw" target="_blank" style="border-bottom:1px solid rgba(250,250,248,.4);font-style:italic">foodtaipei.com.tw ↗</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECTION 01: TNCの見立て === -->
+  <section class="section-block">
+    <div class="sb-head">
+      <div>
+        <div class="sb-label"><span class="num">01</span>TNC's Perspective — TNCの見立て</div>
+        <h2>なぜ、いま<em>台湾</em>を視るのか。</h2>
+      </div>
+      <div class="sb-aside">執筆 · TNC Taipei Lifestyle Researcher®</div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-text">
+        <p>
+          台湾の食品市場は、いま日本のマーケターが向き合うべき論点が凝縮された場です。急速な高齢化、ローカライズの逆輸入、燻製・発酵といった「安全と美味しさの両立」、そして農協発の循環型ブランディング——どれも、5年後の日本の食卓に立ち上がるテーマばかり。
+        </p>
+        <div class="pull">
+          「FOOD TAIPEIは商品を見る場所ではなく、<br>
+          “次の生活者”に出会う場所である」
+        </div>
+        <p>
+          2024年、初めて設置された<strong>シルバーフレンドリーゾーン</strong>と、Eatender認証ラベルの登場は象徴的でした。台湾は機能性アピールに留まらず「社会課題解決」をパッケージで語る段階に入っています。2026年は、この潮流がどう成熟するか——TNCの現地リサーチャーが定点で追いかけます。
+        </p>
+      </div>
+
+      <div class="fact-card">
+        <h4>2026 注目視察テーマ</h4>
+        <div class="fact-row"><span class="k">01</span><span class="v">食の<em>安全性</em></span></div>
+        <div class="fact-row"><span class="k">02</span><span class="v">シニア・<em>嚥下市場</em></span></div>
+        <div class="fact-row"><span class="k">03</span><span class="v">台湾発<em>ローカライズ</em></span></div>
+        <div class="fact-row"><span class="k">04</span><span class="v">時短・<em>簡便ソリューション</em></span></div>
+        <div class="fact-row"><span class="k">05</span><span class="v">サステナ・<em>循環型ブランド</em></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECTION 02: 過去アーカイブ === -->
+  <section class="section-block">
+    <div class="sb-head">
+      <div>
+        <div class="sb-label"><span class="num">02</span>Past Archive — TNCの定点観測アーカイブ</div>
+        <h2>TNCは、この展示会を<em>10年以上</em>追っています。</h2>
+      </div>
+      <div class="sb-aside">FREE / MEMBERS / PAID</div>
+    </div>
+
+    <div class="archive-grid">
+      <div class="arch-card">
+        <div class="atype"><span>REPORT</span><span class="year">2024</span></div>
+        <h4>FOOD TAIPEI 2024 特別レポート</h4>
+        <div class="adesc">5つのテーマ──Food Safety / Positive Food / シニアフレンドリー / 台湾ローカライズ / 時短・簡便ソリューション。展示会の核心を抽出した8ページ。</div>
+        <div class="afoot"><span>8 PAGES</span><span class="access free">FREE ↗</span></div>
+      </div>
+
+      <div class="arch-card locked">
+        <div class="atype"><span>VIDEO</span><span class="year">2024</span></div>
+        <h4>現地ウェビナー解説 Vol.4</h4>
+        <div class="adesc">台湾在住リサーチャーによる解説。FOOD TAIPEI 2024 現地レポートと、台湾食市場の構造変化について。</div>
+        <div class="afoot"><span>42:18</span><span class="access members">★ MEMBERS</span></div>
+        <div class="lock-tag">🔒 会員限定</div>
+      </div>
+
+      <div class="arch-card locked">
+        <div class="atype"><span>PHOTO ARCHIVE</span><span class="year">2023</span></div>
+        <h4>FOOD TAIPEI 2023 現地写真集</h4>
+        <div class="adesc">展示ブースの定点観測 / 来場者の動き / 台湾人バイヤーの反応——380枚の生写真をアーカイブ。</div>
+        <div class="afoot"><span>380 PHOTOS</span><span class="access paid">$ PAID</span></div>
+        <div class="lock-tag">💎 PAID</div>
+      </div>
+    </div>
+
+    <!-- ウェビナーピックアップ -->
+    <div class="webinar-callout">
+      <div class="wb-icon">▶</div>
+      <div class="wb-info">
+        <div class="wb-meta">★ MEMBERS · LIVE RECORDING</div>
+        <h4>解説ウェビナー：台湾食市場の構造変化と2024レポート読み解き</h4>
+        <div class="wb-sub">42:18 · 台湾在住LR + TNC東京 / 視聴にはパスコードが必要です</div>
+      </div>
+      <div class="wb-actions">
+        <div class="wb-passcode">
+          <span class="pc-label">PASSCODE</span>
+          <span>CxK1@z2%</span>
+          <span class="copy" onclick="copyPass(event)">COPY</span>
+        </div>
+        <a href="https://us02web.zoom.us/rec/share/p0vrPWRYmSf3QkEfIdeoT4SZ_yFY-R0Oqh-Og2nT7h0t64FUdUE7y0D9wmK4JQoU.3tL7OrCL7SPgp7GC?startTime=1758780020000" target="_blank" rel="noopener" class="wb-link">
+          ウェビナーを視聴 ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECTION 03: TOUR (反転デザインで明確に区切る) === -->
+  <section class="tour-section">
+    <div class="tour-inner">
+      <div class="tour-eyebrow">03 — TNC Insight-Tour 2026</div>
+      <h2>展示会を、ただ視るだけで<br>終わらせない<em>視察ツアー。</em></h2>
+      <p class="lead">
+        20年以上世界のフードトレンドを読み解いてきたTNCと、現地在住ライフスタイル・リサーチャーが、貴社向けの<strong style="color:var(--paper)">完全カスタマイズ視察ツアー</strong>をご提案します。展示会視察に、生活者・小売・有識者の現場を組み合わせる——TNCならではの「周辺調査」が、見立ての解像度を変えます。
+      </p>
+
+      <!-- ベネフィット -->
+      <div class="tour-benefits">
+        <div class="tbene">
+          <div class="tbn">01 / BEFORE</div>
+          <h5>事前レクチャー</h5>
+          <p>視察内容に合わせて、現地リサーチャーが事前ブリーフィング。展示の傾向と背景を共有します。</p>
+        </div>
+        <div class="tbene">
+          <div class="tbn">02 / DURING</div>
+          <h5>アテンド&通訳</h5>
+          <p>現地トレンドに精通したリサーチャーが終日アテンド。出展社へのヒアリングや商談も対応します。</p>
+        </div>
+        <div class="tbene">
+          <div class="tbn">03 / BEYOND</div>
+          <h5>周辺調査の併走</h5>
+          <p>展示会場の外へ。注目小売の定点観測、生活者宅訪問、有識者意見交換まで自由設計。</p>
+        </div>
+        <div class="tbene">
+          <div class="tbn">04 / AFTER</div>
+          <h5>帰国後レポート</h5>
+          <p>現地での情報整理から帰国後の視察報告書作成まで、一貫してサポートします。</p>
+        </div>
+      </div>
+
+      <!-- ツアーメニュー -->
+      <div class="menu-head">
+        <h3>視察ツアー <em>メニュー</em> — ご要望に合わせて組合せ可能</h3>
+        <div class="mh-meta">A / B / C / D · 自由設計</div>
+      </div>
+
+      <div class="tour-menu">
+        <div class="tour-item">
+          <div class="icon">A</div>
+          <div>
+            <h5>展示会視察</h5>
+            <p>FOOD TAIPEI 会場をリサーチャーがアテンド。関心テーマに沿った深掘りと、出展社への商談セッティングまで。</p>
+          </div>
+        </div>
+        <div class="tour-item">
+          <div class="icon">B</div>
+          <div>
+            <h5>最新トレンドエリア / 注目の小売・外食視察</h5>
+            <p>MUJI台湾、誠品書店、台湾系コンビニ新業態など、現地小売の最新ストアを定点観測。</p>
+          </div>
+        </div>
+        <div class="tour-item">
+          <div class="icon">C</div>
+          <div>
+            <h5>生活者インタビュー / 宅訪問</h5>
+            <p>ライフスタイル・リサーチャー®のネットワークを活用。Z世代・シニア世帯の食卓を直に観察します。</p>
+          </div>
+        </div>
+        <div class="tour-item">
+          <div class="icon">D</div>
+          <div>
+            <h5>有識者・スタートアップとの意見交換</h5>
+            <p>台湾食産業の研究者、新興フードテック企業、農協幹部などとクローズドな意見交換セッションを設定。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- スケジュール -->
+      <div class="schedule-section">
+        <div class="menu-head">
+          <h3>想定<em>スケジュール</em> · 4日間モデル</h3>
+          <div class="mh-meta">SAMPLE · CUSTOMIZABLE</div>
+        </div>
+        <div class="schedule-table">
+          <div class="schedule-row head">
+            <div>Day</div><div>Activity</div><div>Detail</div><div>Tag</div>
+          </div>
+          <div class="schedule-row">
+            <div class="day">D1</div>
+            <div class="title-cell">事前レクチャー / 展示会視察</div>
+            <div class="desc-cell">FOOD TAIPEI開幕。TNCリサーチャーによる現地ブリーフィング後、展示会フロアを目的別に巡回。</div>
+            <div class="tag-cell">Exhibition</div>
+          </div>
+          <div class="schedule-row">
+            <div class="day">D2</div>
+            <div class="title-cell">展示会深掘り / 出展社商談</div>
+            <div class="desc-cell">関心テーマ（Eatender、ローカライズ調味料 等）に絞った深掘り。通訳付きで商談セッティング。</div>
+            <div class="tag-cell">Exhibition · B2B</div>
+          </div>
+          <div class="schedule-row">
+            <div class="day">D3</div>
+            <div class="title-cell">小売店定点 / 生活者宅訪問</div>
+            <div class="desc-cell">午前：MUJI台湾、誠品生活ほか。午後：シニア・Z世代の家庭を訪問し、食卓と買物行動を観察。</div>
+            <div class="tag-cell">Retail · Life</div>
+          </div>
+          <div class="schedule-row">
+            <div class="day">D4</div>
+            <div class="title-cell">有識者ラウンドテーブル / ラップアップ</div>
+            <div class="desc-cell">台湾食産業の有識者とクローズドセッション。最終日に視察の振り返りと日本展開へのヒント整理。</div>
+            <div class="tag-cell">Insight · Wrap-up</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA: 検討中ボタン + 相乗り価格 -->
+      <div class="tour-cta-row">
+        <div class="cta-main">
+          <div class="cta-label">— Action</div>
+          <h4>このツアーに、<em>関心あり。</em></h4>
+          <p class="cta-sub">「検討中」を押すだけ。営業電話の前に、まずTNCに「気になっている」とお伝えください。お申込みは展示会視察のみは1か月前、現地企画を含むプランは2か月前までが目安です。</p>
+          <button id="interestBtn" class="interest-btn" onclick="toggleInterest()">
+            <span class="ibtn-text">＋ 検討中リストに追加</span>
+            <span class="badge" id="interestCount">12社</span>
+          </button>
+          <div class="social-proof">
+            現在 <span class="num">12</span> 社が検討中。<br>
+            内訳：食品メーカー <strong>5社</strong> / 小売 <strong>3社</strong> / 商社 <strong>2社</strong> / 広告代理店 <strong>2社</strong>
+          </div>
+        </div>
+
+        <div class="price-sim">
+          <div class="ps-label">Multi-client Pricing</div>
+          <h5>相乗りで、1社あたりが下がります。</h5>
+          <div class="ps-row"><span>単独参加</span><span class="v">¥1,800,000~</span></div>
+          <div class="ps-row"><span>2社相乗り</span><span class="v">¥1,100,000~</span></div>
+          <div class="ps-row current"><span>3社相乗り（現在）</span><span class="v">¥780,000~</span></div>
+          <div class="ps-row"><span>4社相乗り</span><span class="v">¥620,000~</span></div>
+          <div class="ps-foot">※ TNCメンバー同行費を含む。交通費・宿泊費・現地実費は別途申し受けます。事前レクチャー・現地通訳・帰国後レポート込。</div>
+        </div>
+      </div>
+
+      <!-- Final CTA row -->
+      <div class="final-cta-row">
+        <span class="label">More</span>
+        <a href="#" class="btn-light">視察ツアー概要 PDF をダウンロード ↓</a>
+        <a href="https://www.tenace.co.jp/contact/" target="_blank" class="btn-ghost">個別相談を依頼する →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand">Insight-Tour <em>Portal</em></div>
+      <p class="foot-tagline">最前線から、これからの未来を読み、創る。<br>株式会社TNC ／ Lifestyle Researcher® Global Network<br>東京・福岡・バンコク・サイゴン・ジャカルタ</p>
+    </div>
+    <div class="foot-col">
+      <h6>Portal</h6>
+      <ul>
+        <li><a href="#">Calendar 2026</a></li>
+        <li><a href="#">Past Reports</a></li>
+        <li><a href="#">Webinar Archive</a></li>
+        <li><a href="#">Membership</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h6>Services</h6>
+      <ul>
+        <li><a href="#">Standard Tour</a></li>
+        <li><a href="#">Custom Research</a></li>
+        <li><a href="#">Annual Partner</a></li>
+        <li><a href="#">FOODIAL Subscription</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h6>Contact</h6>
+      <ul>
+        <li><a href="https://www.tenace.co.jp/contact/">tenace.co.jp/contact</a></li>
+        <li>03-6280-7193</li>
+        <li>東京都新宿区箪笥町1番地</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>© 2026 TNC Inc. — All rights reserved.</div>
+    <div>v0.2 PROTOTYPE · MOCKUP</div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"><span class="dot"></span><span id="toastText">追加しました</span></div>
+
+<script>
+  function showView(v){
+    document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+    document.getElementById('view-' + v).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  let interested = false;
+  function toggleInterest(){
+    const btn = document.getElementById('interestBtn');
+    const txt = btn.querySelector('.ibtn-text');
+    const cnt = document.getElementById('interestCount');
+    interested = !interested;
+    if(interested){
+      btn.classList.add('active');
+      txt.textContent = '✓ 検討中リストに追加済';
+      cnt.textContent = '13社';
+      showToast('「検討中」リストに追加しました。TNC担当者から1〜2営業日以内にご連絡します。');
+    } else {
+      btn.classList.remove('active');
+      txt.textContent = '＋ 検討中リストに追加';
+      cnt.textContent = '12社';
+      showToast('検討中リストから外しました');
+    }
+  }
+
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    document.getElementById('toastText').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window._tT);
+    window._tT = setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  function copyPass(e){
+    e.stopPropagation();
+    navigator.clipboard?.writeText('CxK1@z2%');
+    showToast('パスコードをコピーしました');
+  }
+
+  document.querySelectorAll('.filter-row').forEach(row => {
+    let groups = [];
+    let current = [];
+    row.childNodes.forEach(n => {
+      if(n.nodeType===1 && n.classList.contains('filter-divider')){
+        groups.push(current); current = [];
+      } else if(n.nodeType===1 && n.classList.contains('chip')){
+        current.push(n);
+      }
+    });
+    groups.push(current);
+    groups.forEach(grp => {
+      grp.forEach(chip => {
+        chip.addEventListener('click', () => {
+          grp.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>
